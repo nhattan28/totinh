@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Luân tỏ tình Trinh 💌</title>
+  <title>Huy Hoàng tỏ tình Nguyễn Luân 💌</title>
   <style>
     body {
       margin: 0;
@@ -49,7 +49,6 @@
       background-color: #cccccc;
       color: #333;
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
@@ -79,17 +78,24 @@
 
     #result {
       margin-top: 30px;
-      font-size: 2em;
+      font-size: 1.8em;
       color: #d500f9;
+    }
+
+    #result img {
+      margin-top: 20px;
+      max-width: 80%;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #ff80ab;
     }
   </style>
 </head>
 <body>
-  <h1>💘 Trinh ơi, nghe Luân nói nè 💘</h1>
+  <h1>💘 Luân ơi, nghe Hoàng nói nè 💘</h1>
   <div class="message">
-    Tớ biết lời nói qua màn hình có thể không bằng ánh mắt ngoài đời,<br/>
-    Nhưng tớ thật lòng muốn nói điều này:<br/><br/>
-    <strong>"Tớ thích cậu, Trinh ạ! 💖 Làm người yêu tớ nhé?"</strong>
+    Dù là nắng hay mưa, tớ vẫn muốn cùng cậu bước qua tất cả.<br/>
+    Và giờ, tớ chỉ muốn hỏi một điều thôi:<br/><br/>
+    <strong>"Tớ thích cậu, Nguyễn Luân ạ! 💖 Làm người yêu tớ nhé?"</strong>
   </div>
 
   <div class="buttons">
@@ -99,7 +105,6 @@
 
   <div id="result"></div>
 
-  <!-- Hiệu ứng tim -->
   <script>
     function createHeart() {
       const heart = document.createElement("div");
@@ -111,12 +116,22 @@
     setInterval(createHeart, 400);
 
     function accept() {
-      document.getElementById("result").innerHTML = "💥 Yayyy! Trinh đã đồng ý! 💍 Từ nay chúng ta là một đôi rồi nhé 💖";
+      const result = document.getElementById("result");
+      result.innerHTML = `
+        ❤️ Huy Hoàng yêu Nguyễn Luân ❤️<br/>
+        Mãi bên nhau nhé! 💞💞<br/>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3ZxdWFhaWptZW5zNzViZGx1Y2x5bThrcDZicGdhb3R4aGtmcXN1dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Z21HJZia8vL4s/giphy.gif" alt="Yêu nhau" />
+      `;
       explodeHearts();
     }
 
     function reject() {
-      document.getElementById("result").innerHTML = "😢 Hic... Không sao đâu, tớ vẫn chúc cậu hạnh phúc ❤️";
+      const result = document.getElementById("result");
+      result.innerHTML = `
+        😳 Nguyễn Luân yêu Huy Hoàng trước cơ 😘<br/>
+        Trò chơi tình yêu lật ngược rồi nhaaaa!<br/>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExazhiZGhiZm43Y2pqaXZyNnE2cHFwZTV1d3g4dHZpaXprdmw1c3I1byZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Fz6oF8mgW5OV2/giphy.gif" alt="Bị bắt bài" />
+      `;
       rainingTears();
     }
 
@@ -140,7 +155,6 @@
       }
     }
 
-    // Keyframes drop được thêm bằng JavaScript để tránh CSS overload
     const style = document.createElement('style');
     style.innerHTML = `
       @keyframes drop {
@@ -153,7 +167,6 @@
     document.head.appendChild(style);
   </script>
 
-  <!-- Nhạc nền -->
   <audio autoplay loop>
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
   </audio>
