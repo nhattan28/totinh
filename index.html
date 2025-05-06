@@ -3,44 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luân tỏ tình Trinh 💘</title>
+  <title>Luân tỏ tình Trinh 💌</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #ffeef2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
+      background: linear-gradient(to top right, #ffccff, #ccffff);
+      overflow: hidden;
     }
     h1 {
-      color: #e91e63;
-      font-size: 3rem;
       text-align: center;
-    }
-    p {
-      font-size: 1.5rem;
-      color: #333;
-      text-align: center;
-      max-width: 500px;
-      padding: 0 1rem;
+      margin-top: 50px;
+      color: #ff4081;
+      font-size: 3em;
+      animation: pulse 2s infinite;
     }
     .heart {
-      font-size: 5rem;
-      animation: beat 1s infinite;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 6s infinite ease-in;
     }
-    @keyframes beat {
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes pulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes float {
+      0% {
+        bottom: -20px;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+      }
+    }
+    .message {
+      text-align: center;
+      color: #333;
+      font-size: 1.5em;
+      margin: 40px auto;
+      max-width: 600px;
+      animation: fadeIn 3s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="heart">💖</div>
-  <h1>Luân tỏ tình Trinh</h1>
-  <p>Trinh ơi, nếu cậu cũng thấy tim mình rung rinh thì… làm người yêu tớ nhé? 😳</p>
+  <h1>💘 Trinh ơi, nghe Luân nói nè 💘</h1>
+  <div class="message">
+    Tớ biết lời nói qua màn hình có thể không bằng ánh mắt ngoài đời,<br/>
+    Nhưng tớ thật lòng muốn nói điều này:<br/><br/>
+    <strong>"Tớ thích cậu, Trinh ạ! 💖 Làm người yêu tớ nhé?"</strong>
+  </div>
+
+  <!-- Hiệu ứng thả tim -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+  <!-- Nhạc nền -->
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+  </audio>
 </body>
 </html>
