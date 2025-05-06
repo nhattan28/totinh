@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Luân tỏ tình Trinh 💌</title>
   <style>
     body {
@@ -11,13 +11,52 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to top right, #ffccff, #ccffff);
       overflow: hidden;
+      text-align: center;
     }
     h1 {
-      text-align: center;
       margin-top: 50px;
       color: #ff4081;
       font-size: 3em;
       animation: pulse 2s infinite;
+    }
+    .message {
+      color: #333;
+      font-size: 1.5em;
+      margin: 30px auto;
+      max-width: 600px;
+      animation: fadeIn 3s ease forwards;
+    }
+    .buttons {
+      margin-top: 40px;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 15px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    .yes {
+      background-color: #ff4081;
+      color: white;
+    }
+    .no {
+      background-color: #cccccc;
+      color: #333;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .heart {
       position: absolute;
@@ -27,8 +66,7 @@
       transform: rotate(45deg);
       animation: float 6s infinite ease-in;
     }
-    .heart::before,
-    .heart::after {
+    .heart::before, .heart::after {
       content: '';
       position: absolute;
       width: 20px;
@@ -36,45 +74,13 @@
       background: red;
       border-radius: 50%;
     }
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-    .heart::after {
-      left: -10px;
-      top: 0;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    @keyframes float {
-      0% {
-        bottom: -20px;
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        bottom: 100%;
-        opacity: 0;
-      }
-    }
-    .message {
-      text-align: center;
-      color: #333;
-      font-size: 1.5em;
-      margin: 40px auto;
-      max-width: 600px;
-      animation: fadeIn 3s ease forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    audio {
-      display: none;
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { top: 0; left: -10px; }
+
+    #result {
+      margin-top: 30px;
+      font-size: 2em;
+      color: #d500f9;
     }
   </style>
 </head>
@@ -86,17 +92,65 @@
     <strong>"Tớ thích cậu, Trinh ạ! 💖 Làm người yêu tớ nhé?"</strong>
   </div>
 
-  <!-- Hiệu ứng thả tim -->
+  <div class="buttons">
+    <button class="yes" onclick="accept()">Đồng ý ❤️</button>
+    <button class="no" onclick="reject()">Từ chối 😢</button>
+  </div>
+
+  <div id="result"></div>
+
+  <!-- Hiệu ứng tim -->
   <script>
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.style.left = Math.random() * window.innerWidth + "px";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 6000);
     }
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 400);
+
+    function accept() {
+      document.getElementById("result").innerHTML = "💥 Yayyy! Trinh đã đồng ý! 💍 Từ nay chúng ta là một đôi rồi nhé 💖";
+      explodeHearts();
+    }
+
+    function reject() {
+      document.getElementById("result").innerHTML = "😢 Hic... Không sao đâu, tớ vẫn chúc cậu hạnh phúc ❤️";
+      rainingTears();
+    }
+
+    function explodeHearts() {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(createHeart, i * 100);
+      }
+    }
+
+    function rainingTears() {
+      for (let i = 0; i < 30; i++) {
+        const tear = document.createElement("div");
+        tear.textContent = "💧";
+        tear.style.position = "absolute";
+        tear.style.left = Math.random() * window.innerWidth + "px";
+        tear.style.top = "-30px";
+        tear.style.fontSize = "24px";
+        tear.style.animation = `drop ${2 + Math.random() * 3}s linear infinite`;
+        document.body.appendChild(tear);
+        setTimeout(() => tear.remove(), 5000);
+      }
+    }
+
+    // Keyframes drop được thêm bằng JavaScript để tránh CSS overload
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes drop {
+        to {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 
   <!-- Nhạc nền -->
